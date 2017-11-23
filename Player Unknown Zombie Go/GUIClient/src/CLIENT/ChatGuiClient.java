@@ -18,13 +18,14 @@ import javax.swing.JTextField;
 
 public class ChatGuiClient extends JFrame implements ActionListener, Runnable
 {
-
     static JTextArea textArea = new JTextArea();
     JScrollPane jp = new JScrollPane(textArea);
     JTextField input_Text = new JTextField();
-    static Socket sk;
-    static BufferedReader br;
+    Socket sk;
+    BufferedReader br;
     static PrintWriter pw; // 다른 메서드에서 사용하기 위해 전역변수로
+
+    public static boolean isName = false;
 
     public ChatGuiClient()
     {
@@ -48,15 +49,16 @@ public class ChatGuiClient extends JFrame implements ActionListener, Runnable
     /**
      * 서버측에 접속기능 담당하는 메소드 작성
      * */
-    public static String name;
+
+    public static String name = null;
 
     public void serverConnection()
     {
         try
         {
             sk = new Socket("127.0.0.1", 7000);
-            name = JOptionPane.showInputDialog(this, "닉네임을 입력해주세요.",
-                    JOptionPane.INFORMATION_MESSAGE);
+            name = JOptionPane.showInputDialog(this, "닉네임을 입력해주세요.", JOptionPane.INFORMATION_MESSAGE);
+            isName = true;
 
             // 읽기준비
             br = new BufferedReader(new InputStreamReader(sk.getInputStream()));
@@ -77,7 +79,11 @@ public class ChatGuiClient extends JFrame implements ActionListener, Runnable
     public static void main(String[] args)
     {
         new ChatGuiClient().serverConnection(); // 객체생성과 동시에 메서드 호출
-        Player player = new Player();
+        if (isName)
+        {
+            Player player = new Player();
+        }
+
     }
 
     // 쓰레드

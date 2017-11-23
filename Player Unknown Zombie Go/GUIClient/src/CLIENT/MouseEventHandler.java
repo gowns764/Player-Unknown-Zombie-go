@@ -5,10 +5,10 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.util.Random;
 
 public class MouseEventHandler extends Thread implements MouseListener, ActionListener
 {
-    public static boolean isClicked = false;
 
     @Override
     public void mouseClicked(MouseEvent e)
@@ -40,13 +40,35 @@ public class MouseEventHandler extends Thread implements MouseListener, ActionLi
     public void actionPerformed(ActionEvent e)
     {
         JButton jButton = (JButton) e.getSource();
-        Battle battle = new Battle();
+        Battle battle = KeyboardEventHandler.battle;
 
         if (jButton.getText().equals("공격"))
         {
-            WeakZombie.weakZombieCurrentHp -= Player.power;
-            Battle.weakZombieHpLabel.setText(WeakZombie.weakZombieName + "\n" + WeakZombie.weakZombieCurrentHp + " / " + WeakZombie.weakZombieMaxHp);
-            isClicked = true;
+            battle.playerTurn();
+        }
+
+        else if (jButton.getText().equals("도구"))
+        {
+
+        }
+
+        else if (jButton.getText().equals("도망"))
+        {
+            if (Player.speed > WeakZombie.weakZombieSpeed)
+            {
+                battle.battleEnd();
+            }
+
+            else
+            {
+                Random random = new Random();
+                int rate = random.nextInt(100);
+
+                if (rate <= ((Player.speed / WeakZombie.weakZombieSpeed) * 100))
+                    battle.battleEnd();
+                else
+                    return;
+            }
         }
     }
 }

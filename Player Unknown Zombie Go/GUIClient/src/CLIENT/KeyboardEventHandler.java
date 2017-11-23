@@ -1,16 +1,11 @@
 package CLIENT;
 
-import javax.swing.*;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
-import java.util.Random;
 
 public class KeyboardEventHandler extends KeyAdapter
 {
-    Battle battle =new Battle();
-    //Random random = new Random();
-    //private int value = 0;
-
+    static Battle battle = new Battle();
 
     public void keyPressed(KeyEvent event)
     {
@@ -28,7 +23,11 @@ public class KeyboardEventHandler extends KeyAdapter
                 {
                     Player.playerLabel.setLocation(Player.playerLabel.getX(), Player.playerLabel.getY() - Player.speed);
                     if (value <= 1.5)
+                    {
+                        Player.currentX = Player.playerLabel.getX();
+                        Player.currentY = Player.playerLabel.getY();
                         battle.startBattle();
+                    }
                     break;
                 }
 
@@ -39,7 +38,11 @@ public class KeyboardEventHandler extends KeyAdapter
                 {
                     Player.playerLabel.setLocation(Player.playerLabel.getX(), Player.playerLabel.getY() + Player.speed);
                     if (value <= 1.5)
+                    {
+                        Player.currentX = Player.playerLabel.getX();
+                        Player.currentY = Player.playerLabel.getY();
                         battle.startBattle();
+                    }
                     break;
                 }
 
@@ -50,7 +53,11 @@ public class KeyboardEventHandler extends KeyAdapter
                 {
                     Player.playerLabel.setLocation(Player.playerLabel.getX() - Player.speed, Player.playerLabel.getY());
                     if (value <= 1.5)
+                    {
+                        Player.currentX = Player.playerLabel.getX();
+                        Player.currentY = Player.playerLabel.getY();
                         battle.startBattle();
+                    }
                     break;
                 }
 
@@ -61,7 +68,12 @@ public class KeyboardEventHandler extends KeyAdapter
                 {
                     Player.playerLabel.setLocation(Player.playerLabel.getX() + Player.speed, Player.playerLabel.getY());
                     if (value <= 1.5)
+
+                    {
+                        Player.currentX = Player.playerLabel.getX();
+                        Player.currentY = Player.playerLabel.getY();
                         battle.startBattle();
+                    }
                     break;
                 }
         }

@@ -140,7 +140,7 @@ public class ChatGuiServer extends JFrame implements ActionListener, Runnable
     @Override
     public void run()
     {
-        /*String data = null;
+        String data = null;
         try
         {
             while ((data = br.readLine()) != null)
@@ -154,7 +154,7 @@ public class ChatGuiServer extends JFrame implements ActionListener, Runnable
         catch (Exception e)
         {
             textArea.append(e + "--> Client run fail");
-        }*/
+        }
     }
 } //클래스 끝
 

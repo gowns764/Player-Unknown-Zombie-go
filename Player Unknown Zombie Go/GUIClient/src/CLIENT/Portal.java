@@ -4,11 +4,11 @@ import javax.swing.*;
 
 public class Portal extends JFrame
 {
-    public static JLabel portalLabel = new JLabel(new ImageIcon("HiosPortal.gif"));
+    JLabel portalLabel = new JLabel(new ImageIcon("HiosPortal1.gif"));
 
     public Portal()
     {
-        portalLabel.setBounds(300, 300, 300, 300);
+        portalLabel.setBounds(300, 300, 130, 130);
         Player.backGround.add(portalLabel);
     }
 }
