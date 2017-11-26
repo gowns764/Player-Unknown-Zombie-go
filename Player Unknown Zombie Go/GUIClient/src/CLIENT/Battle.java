@@ -14,7 +14,7 @@ public class Battle extends JFrame
     public static int turn = 1;
     private int time = 1000;
 
-    public JButton attackButton = null;
+    JButton attackButton = null;
     JButton toolButton = null;
     JButton runAwayButton = null;
 
@@ -23,8 +23,8 @@ public class Battle extends JFrame
     private static JLabel hpLabel = new JLabel(Player.CurrentHp + " / " + Player.MaxHp);
     private static JLabel weakZombieHpLabel = new JLabel(WeakZombie.weakZombieCurrentHp + " / " + WeakZombie.weakZombieMaxHp);
 
-    private static JLabel explainLabel = new JLabel("야생의 " + WeakZombie.weakZombieName + "가 나타났다! " + ChatGuiClient.name +"은(는) 무엇을 할 것인가?");
-    public static JLabel toolLabel = null;
+    public static JLabel explainLabel = new JLabel("야생의 " + WeakZombie.weakZombieName + "가 나타났다! " + ChatGuiClient.name +"은(는) 무엇을 할 것인가?");
+    public static JLabel toolLabel = new JLabel("");
     JLabel battleGroundLabel = new JLabel(new ImageIcon("BattleGround.png"));
     JLabel weakZombieLabel = new JLabel(new ImageIcon("WeakZombie.png"));
 
@@ -104,6 +104,7 @@ public class Battle extends JFrame
         if (WeakZombie.weakZombieCurrentHp <= 0)
         {
             inventory.dropTheItem();
+            Inventory.countItem++;
             WeakZombie.weakZombieCount++;
             battleEnd();
         }
@@ -139,6 +140,6 @@ public class Battle extends JFrame
     private void checkCount()
     {
         if (WeakZombie.weakZombieCount == 4)
-            Player.noticeLabel.setText("약한 좀비 4마리를 모드 잡으셨습니다.");
+            Player.noticeLabel.setText("약한 좀비 4마리를 모두 잡으셨습니다.");
     }
 }

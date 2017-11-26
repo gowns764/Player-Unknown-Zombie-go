@@ -2,29 +2,29 @@ package CLIENT;
 
 public class ItemList
 {
-    private Node head;
-    private Node tail;
+    private Node head = null;
+    private Node tail = null;
     private int size = 0;
 
-    private class Node
+    private class Node extends Item
     {
-        private Object data;
+        private String name = "";
 
         private Node next;
 
-        public Node(Object input)
+        public Node(Item input)
         {
-            this.data = input;
+            this.name = input.name;
             this.next = null;
         }
 
         public String toString()
         {
-            return String.valueOf(this.data);
+            return String.valueOf(this.name);
         }
     }
 
-    public void addFirst(Object input)
+    public void addFirst(Item input)
     {
         Node newNode = new Node(input);
 
@@ -37,7 +37,7 @@ public class ItemList
             tail = head;
     }
 
-    public void addLast(Object input)
+    public void addLast(Item input)
     {
         Node newNode = new Node(input);
 
@@ -59,7 +59,7 @@ public class ItemList
         return x;
     }
 
-    public void add(int k, Object input)
+    public void add(int k, Item input)
     {
         if (k == 0)
             addFirst(input);
@@ -88,11 +88,11 @@ public class ItemList
 
         while (temp.next != null)
         {
-            str += temp.data + ", ";
+            str += temp.name + ", ";
             temp = temp.next;
         }
 
-        str += temp.data;
+        str += temp.name;
         return str+"]";
     }
 
@@ -101,8 +101,8 @@ public class ItemList
         Node temp = head;
         head = temp.next;
 
-        Object returnData = temp.data;
-        temp = null;
+        Object returnData = temp.name;
+        temp.name = null;
         size--;
 
         return returnData;
@@ -116,12 +116,12 @@ public class ItemList
         Node temp = node(k-1);
         Node todoDeleted = temp.next;
         temp.next = temp.next.next;
-        Object returnData = todoDeleted.data;
+        Object returnData = todoDeleted.name;
 
         if (todoDeleted == tail)
             tail = temp;
 
-        todoDeleted = null;
+        todoDeleted.name = null;
         size--;
         return returnData;
     }
@@ -131,10 +131,10 @@ public class ItemList
         return size;
     }
 
-    public Object get(int k)
+    public String get(int k)
     {
         Node temp = node(k);
-        return temp.data;
+        return temp.name;
     }
 
     public int indexOf(Object data)
@@ -142,7 +142,7 @@ public class ItemList
         Node temp = head;
         int index = 0;
 
-        while (temp.data != data)
+        while (temp.name != data)
         {
             temp = temp.next;
             index++;
@@ -175,7 +175,7 @@ public class ItemList
             return nextIndex < size();
         }
 
-        public void add(Object input)
+        public void add(Item input)
         {
             Node newNode = new Node(input);
 

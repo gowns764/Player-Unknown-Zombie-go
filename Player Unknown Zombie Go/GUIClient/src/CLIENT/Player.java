@@ -2,7 +2,6 @@ package CLIENT;
 
 import javax.swing.*;
 import java.awt.*;
-import java.util.LinkedList;
 
 public class Player extends JFrame
 {
@@ -10,7 +9,6 @@ public class Player extends JFrame
     public static int MaxHp = 20;
     public static int CurrentHp = 20;
     public static int speed = 5;
-    public String[] tool = {""};
 
     public static int currentX = 100;
     public static int currentY = 100;
@@ -26,7 +24,7 @@ public class Player extends JFrame
         backGround.setBounds(0, 0, 1920, 1080);
         backGround.add(playerLabel);
         this.add(backGround);
-        playerLabel.setBounds(currentX, currentY, 50, 250);
+        playerLabel.setBounds(currentX, currentY, 60, 250);
 
         noticeLabel.setBounds(900, 100, 500, 50);
 
@@ -41,10 +39,6 @@ public class Player extends JFrame
 
     private void gameStart()
     {
-        Portal portal = new Portal();
-        Portion portion = new Portion();
-        Pistol pistol = new Pistol();
-
         BorderLayout layout = new BorderLayout();
 
         addKeyListener(new KeyboardEventHandler());
@@ -53,8 +47,4 @@ public class Player extends JFrame
         this.setLayout(layout);
     }
 
-    public static void toolList()
-    {
-
-    }
 }

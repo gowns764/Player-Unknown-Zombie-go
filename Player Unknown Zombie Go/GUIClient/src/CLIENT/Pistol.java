@@ -1,13 +1,10 @@
 package CLIENT;
 
-import javax.swing.*;
-
-public class Pistol
+public class Pistol extends Item
 {
-    public static JLabel pistolLabel;
-
     public Pistol()
     {
-        pistolLabel = new JLabel(new ImageIcon("Gun.png"));
+        setName("권총");
+        setPower(2);
     }
 }
