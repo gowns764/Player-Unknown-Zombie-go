@@ -17,7 +17,7 @@ public class Battle extends JFrame
 
     private JLabel playerNameLabel = new JLabel(ChatGuiClient.name);
     private JLabel weakZombieNameLabel = new JLabel(WeakZombie.weakZombieName);
-    public static JLabel hpLabel = new JLabel(Player.CurrentHp + " / " + Player.MaxHp);
+    public static JLabel hpLabel = new JLabel(Player.CurrentHp + " / " + Player.MaxHp + "   " + Player.defensivePower);
     private static JLabel weakZombieHpLabel = new JLabel(WeakZombie.weakZombieCurrentHp + " / " + WeakZombie.weakZombieMaxHp);
 
     public static JLabel explainLabel = new JLabel("야생의 " + WeakZombie.weakZombieName + "가 나타났다! " + ChatGuiClient.name +"은(는) 무엇을 할 것인가?");
@@ -86,6 +86,9 @@ public class Battle extends JFrame
         explainLabel.setBounds(450, 750, 1100, 200);
         explainLabel.setFont(font);
 
+        Player.power = 5;
+        InventoryMouseEventHandler.isItemClicked = false;
+
         this.setLayout(null);
         this.setSize(1920, 1080);
         this.setVisible(true);
@@ -118,9 +121,20 @@ public class Battle extends JFrame
 
     public void zombieTurn()
     {
-        Player.CurrentHp -= WeakZombie.weakZombiePower;
+        if (Player.defensivePower == 0)
+            Player.CurrentHp -= WeakZombie.weakZombiePower;
+        else if (Player.defensivePower > 0)
+        {
+            Player.defensivePower -= WeakZombie.weakZombiePower;
+            if (Player.defensivePower <= 0)
+            {
+                Player.CurrentHp -= Math.abs(Player.defensivePower);
+                Player.defensivePower = 0;
+            }
+        }
+
         StringBuilder builder = new StringBuilder();
-        builder.append(Player.CurrentHp + " / " + Player.MaxHp);
+        builder.append(Player.CurrentHp + " / " + Player.MaxHp + "  " + Player.defensivePower);
         Battle.hpLabel.setText(builder.toString());
 
         if (Player.CurrentHp <=0)

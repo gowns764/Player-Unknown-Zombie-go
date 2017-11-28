@@ -1,5 +1,7 @@
 package CLIENT;
 
+import javafx.application.Platform;
+
 import javax.swing.*;
 import java.awt.*;
 
@@ -9,6 +11,8 @@ public class Player extends JFrame
     public static int MaxHp = 20;
     public static int CurrentHp = 20;
     public static int speed = 5;
+    public static int defensivePower = 0;
+    public static double evasionRate = 0.0;
 
     public static int currentX = 100;
     public static int currentY = 100;
@@ -79,8 +83,15 @@ public class Player extends JFrame
         playerLabel.setSize(0, 0);
 
         endImage = new JLabel(new ImageIcon("WinEnd.png"));
-        backGround.add(endImage);
-        endImage.setBounds(0, 0, 1920, 1080);
+
+        try {
+            backGround.add(endImage);
+            endImage.setBounds(0, 0, 1920, 1080);
+            Thread.sleep(10000);
+            Platform.exit();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 
     public void failEnd()
@@ -95,7 +106,14 @@ public class Player extends JFrame
         playerLabel.setSize(0, 0);
 
         endImage = new JLabel(new ImageIcon("FailEnd.png"));
-        backGround.add(endImage);
-        endImage.setBounds(0, 0, 1920, 1080);
+
+        try {
+            backGround.add(endImage);
+            endImage.setBounds(0, 0, 1920, 1080);
+            Thread.sleep(10000);
+            Platform.exit();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 }

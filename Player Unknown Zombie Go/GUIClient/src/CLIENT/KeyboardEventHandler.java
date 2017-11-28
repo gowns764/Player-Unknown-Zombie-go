@@ -5,6 +5,7 @@ import java.awt.event.KeyEvent;
 
 public class KeyboardEventHandler extends KeyAdapter
 {
+    CollisionEventHandler collisionEventHandler = new CollisionEventHandler();
     static Battle battle = new Battle();
 
     public void keyPressed(KeyEvent event)
@@ -19,9 +20,19 @@ public class KeyboardEventHandler extends KeyAdapter
             case KeyEvent.VK_UP:
                 if (Player.playerLabel.getY() <= 0)
                     return;
+
                 else
                 {
+                    CollisionEventHandler.isReturn = false;
                     Player.playerLabel.setLocation(Player.playerLabel.getX(), Player.playerLabel.getY() - Player.speed);
+
+                    collisionEventHandler.checkingCollisionToRock();
+                    if (CollisionEventHandler.isReturn)
+                    {
+                        Player.playerLabel.setLocation(Player.playerLabel.getX(), Player.playerLabel.getY() + Player.speed);
+                        return;
+                    }
+
                     if (value <= 1.5)
                     {
                         Player.currentX = Player.playerLabel.getX();
@@ -34,9 +45,20 @@ public class KeyboardEventHandler extends KeyAdapter
             case KeyEvent.VK_DOWN:
                 if(Player.playerLabel.getY() + Player.playerLabel.getHeight() + Player.speed > 1080)
                     return;
+
                 else
                 {
+                    CollisionEventHandler.isReturn = false;
                     Player.playerLabel.setLocation(Player.playerLabel.getX(), Player.playerLabel.getY() + Player.speed);
+
+                    collisionEventHandler.checkingCollisionToRock();
+
+                    if (CollisionEventHandler.isReturn)
+                    {
+                        Player.playerLabel.setLocation(Player.playerLabel.getX(), Player.playerLabel.getY() - Player.speed);
+                        return;
+                    }
+
                     if (value <= 1.5)
                     {
                         Player.currentX = Player.playerLabel.getX();
@@ -51,7 +73,17 @@ public class KeyboardEventHandler extends KeyAdapter
                     return;
                 else
                 {
+                    CollisionEventHandler.isReturn = false;
                     Player.playerLabel.setLocation(Player.playerLabel.getX() - Player.speed, Player.playerLabel.getY());
+
+                    collisionEventHandler.checkingCollisionToRock();
+
+                    if (CollisionEventHandler.isReturn)
+                    {
+                        Player.playerLabel.setLocation(Player.playerLabel.getX() + Player.speed, Player.playerLabel.getY());
+                        return;
+                    }
+
                     if (value <= 1.5)
                     {
                         Player.currentX = Player.playerLabel.getX();
@@ -66,9 +98,17 @@ public class KeyboardEventHandler extends KeyAdapter
                     return;
                 else
                 {
+                    CollisionEventHandler.isReturn = false;
                     Player.playerLabel.setLocation(Player.playerLabel.getX() + Player.speed, Player.playerLabel.getY());
-                    if (value <= 1.5)
 
+                    collisionEventHandler.checkingCollisionToRock();
+                    if (CollisionEventHandler.isReturn)
+                    {
+                        Player.playerLabel.setLocation(Player.playerLabel.getX() - Player.speed, Player.playerLabel.getY());
+                        return;
+                    }
+
+                    if (value <= 1.5)
                     {
                         Player.currentX = Player.playerLabel.getX();
                         Player.currentY = Player.playerLabel.getY();

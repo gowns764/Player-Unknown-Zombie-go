@@ -44,11 +44,9 @@ public class ChatGuiClient extends JFrame implements ActionListener, Runnable
 
         input_Text.addActionListener(this); //이벤트 등록
 
-    }// 생성자 끝
+    }
 
-    /**
-     * 서버측에 접속기능 담당하는 메소드 작성
-     * */
+     //서버측에 접속기능 담당하는 메소드
 
     public static String name = null;
 
@@ -88,9 +86,8 @@ public class ChatGuiClient extends JFrame implements ActionListener, Runnable
     }
 
     // 쓰레드
-    /**
-     * 서버가 보내오는 데이터를 읽어서 TextArea에 올리기
-     */
+    //서버가 보내오는 데이터를 읽어서 TextArea에 올리기
+
     @Override
     public void run()
     {

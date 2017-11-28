@@ -13,6 +13,7 @@ public class Inventory extends JFrame
     public int portion1Number = 0;
     public int portion2Number = 0;
     public int flyingPanNumber = 0;
+    public int armorNumber = 0;
 
     private Random random = new Random();
     private int item;
@@ -24,6 +25,7 @@ public class Inventory extends JFrame
     Portion1 portion1 = new Portion1();
     Portion2 portion2 = new Portion2();
     FlyingPan flyingPan = new FlyingPan();
+    Armor armor = new Armor();
 
     JLabel InventoryGround = new JLabel(new ImageIcon("InventoryGround.png"));
     JButton jButton0 = null;
@@ -37,9 +39,11 @@ public class Inventory extends JFrame
     JButton jButton8 = null;
     JLabel noneItem = new JLabel("아이템이 없습니다.");
 
+    public static String currentsUseItem = "";
+
     public void dropTheItem()
     {
-        item = random.nextInt(6);
+        item = random.nextInt(7);
 
         switch (item)
         {
@@ -49,6 +53,7 @@ public class Inventory extends JFrame
             case 3: dropThePortion1(); break;
             case 4: dropThePortion2(); break;
             case 5: dropTheFlyingFan(); break;
+            case 6: dropTheArmor(); break;
         }
     }
 
@@ -86,6 +91,12 @@ public class Inventory extends JFrame
     {
         flyingPanNumber = Inventory.countItem;
         itemList.add(Inventory.countItem, flyingPan);
+    }
+
+    private void dropTheArmor()
+    {
+        armorNumber = Inventory.countItem;
+        itemList.add(Inventory.countItem, armor);
     }
 
     public void showInventory()
@@ -179,6 +190,11 @@ public class Inventory extends JFrame
         }
 
         this.setVisible(true);
+    }
+
+    public void closeInventory()
+    {
+        this.setVisible(false);
     }
 
     public void removeItem()
