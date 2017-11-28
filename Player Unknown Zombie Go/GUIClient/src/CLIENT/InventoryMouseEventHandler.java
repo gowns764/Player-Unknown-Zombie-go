@@ -32,7 +32,7 @@ public class InventoryMouseEventHandler extends Thread implements MouseListener,
             InventoryMouseEventHandler.isItemClicked = true;
             InventoryMouseEventHandler.removeItem = jButton.getText();
             Player.power = 5;
-            Player.evasionRate = 0.0;
+            Player.evasionRate = 0;
             Player.power += pistol.power;
             inventory.closeInventory();
             battle.zombieTurn();
@@ -44,7 +44,7 @@ public class InventoryMouseEventHandler extends Thread implements MouseListener,
             InventoryMouseEventHandler.isItemClicked = true;
             InventoryMouseEventHandler.removeItem = jButton.getText();
             Player.power = 5;
-            Player.evasionRate = 0.0;
+            Player.evasionRate = 0;
             Player.power += smg.power;
             inventory.closeInventory();
             battle.zombieTurn();
@@ -57,7 +57,7 @@ public class InventoryMouseEventHandler extends Thread implements MouseListener,
             InventoryMouseEventHandler.isItemClicked = true;
             InventoryMouseEventHandler.removeItem = jButton.getText();
             Player.power = 5;
-            Player.evasionRate = 0.0;
+            Player.evasionRate = 0;
             Player.power += ar.power;
             inventory.closeInventory();
             battle.zombieTurn();
@@ -123,7 +123,7 @@ public class InventoryMouseEventHandler extends Thread implements MouseListener,
             InventoryMouseEventHandler.isItemClicked = true;
             InventoryMouseEventHandler.removeItem = jButton.getText();
             Player.power = 5;
-            Player.evasionRate = 0.0;
+            Player.evasionRate = 0;
             Player.evasionRate += flyingPan.evasionRate;
             Player.power += flyingPan.power;
 

@@ -2,6 +2,7 @@ package CLIENT;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.Random;
 
 public class Battle extends JFrame
 {
@@ -28,6 +29,9 @@ public class Battle extends JFrame
     private Font font = new Font("굴림", Font.BOLD, 20);
 
     Inventory inventory = new Inventory();
+
+    private int accuracyRate = 0;
+    private Random random = new Random();
 
     public Battle()
     {
@@ -121,29 +125,37 @@ public class Battle extends JFrame
 
     public void zombieTurn()
     {
-        if (Player.defensivePower == 0)
-            Player.CurrentHp -= WeakZombie.weakZombiePower;
-        else if (Player.defensivePower > 0)
+        accuracyRate = random.nextInt(100);
+
+        if (accuracyRate > Player.evasionRate)
         {
-            Player.defensivePower -= WeakZombie.weakZombiePower;
-            if (Player.defensivePower <= 0)
+            if (Player.defensivePower == 0)
+                Player.CurrentHp -= WeakZombie.weakZombiePower;
+            else if (Player.defensivePower > 0)
             {
-                Player.CurrentHp -= Math.abs(Player.defensivePower);
-                Player.defensivePower = 0;
+                Player.defensivePower -= WeakZombie.weakZombiePower;
+                if (Player.defensivePower <= 0)
+                {
+                    Player.CurrentHp -= Math.abs(Player.defensivePower);
+                    Player.defensivePower = 0;
+                }
             }
+
+            StringBuilder builder = new StringBuilder();
+            builder.append(Player.CurrentHp + " / " + Player.MaxHp + "  " + Player.defensivePower);
+            Battle.hpLabel.setText(builder.toString());
+
+            if (Player.CurrentHp <=0)
+            {
+                battleEnd();
+                player.failEnd();
+            }
+            else
+                Battle.explainLabel.setText(ChatGuiClient.name + "이(가) " + Player.power + "만큼의 데미지를 입히고, " + WeakZombie.weakZombieName + "에게 " +  WeakZombie.weakZombiePower + "만큼의 데미지를 입었다." + ChatGuiClient.name + "은(는) 무엇을 할 것인가?");
         }
 
-        StringBuilder builder = new StringBuilder();
-        builder.append(Player.CurrentHp + " / " + Player.MaxHp + "  " + Player.defensivePower);
-        Battle.hpLabel.setText(builder.toString());
-
-        if (Player.CurrentHp <=0)
-        {
-            battleEnd();
-            player.failEnd();
-        }
         else
-            Battle.explainLabel.setText(ChatGuiClient.name + "이(가) " + Player.power + "만큼의 데미지를 입히고, " + WeakZombie.weakZombieName + "이(가) " +  WeakZombie.weakZombiePower + "만큼의 데미지를 입혔다." + ChatGuiClient.name + "은(는) 무엇을 할 것인가?");
+            Battle.explainLabel.setText(ChatGuiClient.name + "이(가) " + Player.power + "만큼의 데미지를 입히고, " + WeakZombie.weakZombieName + "의 공격을 후라이팬으로 막아냈다!");
     }
 
     public void battleEnd()

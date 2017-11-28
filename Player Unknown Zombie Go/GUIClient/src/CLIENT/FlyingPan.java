@@ -6,6 +6,6 @@ public class FlyingPan extends Item
     {
         setName("후라이팬");
         setPower(1);
-        setEvasionRate(0.3);
+        setEvasionRate(30);
     }
 }

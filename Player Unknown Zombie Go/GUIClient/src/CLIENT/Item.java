@@ -5,7 +5,7 @@ public class Item
     public String name = "";
     public int power = 0;
     public int defensivePower = 0;
-    public double evasionRate = 0.0;
+    public int evasionRate = 0;
 
     public void setName(String name)
     {
@@ -22,7 +22,7 @@ public class Item
         this.defensivePower = defensivePower;
     }
 
-    public void setEvasionRate(double evasionRate)
+    public void setEvasionRate(int evasionRate)
     {
         this.evasionRate = evasionRate;
     }
@@ -42,7 +42,7 @@ public class Item
         return this.defensivePower;
     }
 
-    public double getEvasionRate()
+    public int getEvasionRate()
     {
         return this.evasionRate;
     }
