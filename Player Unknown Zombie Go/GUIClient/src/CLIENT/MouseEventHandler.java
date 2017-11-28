@@ -47,21 +47,15 @@ public class MouseEventHandler extends Thread implements MouseListener, ActionLi
         Battle battle = KeyboardEventHandler.battle;
 
         if (jButton.getText().equals("공격"))
-        {
             battle.playerTurn();
-        }
 
         else if (jButton.getText().equals("도구"))
-        {
             inventory.showInventory();
-        }
 
         else if (jButton.getText().equals("도망"))
         {
             if (Player.speed > WeakZombie.weakZombieSpeed)
-            {
                 battle.battleEnd();
-            }
 
             else
             {

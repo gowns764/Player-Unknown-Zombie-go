@@ -10,7 +10,7 @@ public class ItemList
     {
         private String name = "";
 
-        private Node next;
+        private Node next = null;
 
         public Node(Item input)
         {

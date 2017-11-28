@@ -82,6 +82,7 @@ public class ChatGuiClient extends JFrame implements ActionListener, Runnable
         if (isName)
         {
             Player player = new Player();
+            player.beforeGameStart();
         }
 
     }

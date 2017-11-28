@@ -5,14 +5,11 @@ import java.awt.*;
 
 public class Battle extends JFrame
 {
-    Player player;
+    Player player = new Player();
     WeakZombie weakZombie = new WeakZombie();
     MouseEventHandler mouseEventHandler = new MouseEventHandler();
 
     public JLabel battlePlayerLabel = new JLabel(new ImageIcon("player.png"));
-
-    public static int turn = 1;
-    private int time = 1000;
 
     JButton attackButton = null;
     JButton toolButton = null;
@@ -20,13 +17,13 @@ public class Battle extends JFrame
 
     private JLabel playerNameLabel = new JLabel(ChatGuiClient.name);
     private JLabel weakZombieNameLabel = new JLabel(WeakZombie.weakZombieName);
-    private static JLabel hpLabel = new JLabel(Player.CurrentHp + " / " + Player.MaxHp);
+    public static JLabel hpLabel = new JLabel(Player.CurrentHp + " / " + Player.MaxHp);
     private static JLabel weakZombieHpLabel = new JLabel(WeakZombie.weakZombieCurrentHp + " / " + WeakZombie.weakZombieMaxHp);
 
     public static JLabel explainLabel = new JLabel("야생의 " + WeakZombie.weakZombieName + "가 나타났다! " + ChatGuiClient.name +"은(는) 무엇을 할 것인가?");
     public static JLabel toolLabel = new JLabel("");
     JLabel battleGroundLabel = new JLabel(new ImageIcon("BattleGround.png"));
-    JLabel weakZombieLabel = new JLabel(new ImageIcon("WeakZombie.png"));
+    JLabel weakZombieLabel = new JLabel(new ImageIcon("Zombie.png"));
 
     private Font font = new Font("굴림", Font.BOLD, 20);
 
@@ -72,14 +69,14 @@ public class Battle extends JFrame
         hpLabel.setFont(font);
 
         battleGroundLabel.add(weakZombieLabel);
-        weakZombieLabel.setBounds(1550, 200, 250, 250);
+        weakZombieLabel.setBounds(1550, 100, 250, 250);
 
         battleGroundLabel.add(weakZombieNameLabel);
-        weakZombieNameLabel.setBounds(1600, 350, 200, 50);
+        weakZombieNameLabel.setBounds(1600, 450, 200, 50);
         weakZombieNameLabel.setFont(font);
 
         battleGroundLabel.add(Battle.weakZombieHpLabel);
-        weakZombieHpLabel.setBounds(1600, 400, 300, 50);
+        weakZombieHpLabel.setBounds(1600, 400, 133, 231);
         weakZombieHpLabel.setFont(font);
 
         battleGroundLabel.add(Battle.toolLabel);
@@ -106,7 +103,14 @@ public class Battle extends JFrame
             inventory.dropTheItem();
             Inventory.countItem++;
             WeakZombie.weakZombieCount++;
-            battleEnd();
+
+            if (WeakZombie.weakZombieCount == 10)
+            {
+                battleEnd();
+                player.winEnd();
+            }
+            else
+                battleEnd();
         }
         else
             zombieTurn();
@@ -120,8 +124,10 @@ public class Battle extends JFrame
         Battle.hpLabel.setText(builder.toString());
 
         if (Player.CurrentHp <=0)
+        {
             battleEnd();
-
+            player.failEnd();
+        }
         else
             Battle.explainLabel.setText(ChatGuiClient.name + "이(가) " + Player.power + "만큼의 데미지를 입히고, " + WeakZombie.weakZombieName + "이(가) " +  WeakZombie.weakZombiePower + "만큼의 데미지를 입혔다." + ChatGuiClient.name + "은(는) 무엇을 할 것인가?");
     }
@@ -132,14 +138,6 @@ public class Battle extends JFrame
         weakZombieHpLabel.setText(WeakZombie.weakZombieCurrentHp + " / " + WeakZombie.weakZombieMaxHp);
         Battle.explainLabel.setText("야생의 " + WeakZombie.weakZombieName + "가 나타났다! " + ChatGuiClient.name +"은(는) 무엇을 할 것인가?");
 
-        checkCount();
-
         this.setVisible(false);
-    }
-
-    private void checkCount()
-    {
-        if (WeakZombie.weakZombieCount == 4)
-            Player.noticeLabel.setText("약한 좀비 4마리를 모두 잡으셨습니다.");
     }
 }
