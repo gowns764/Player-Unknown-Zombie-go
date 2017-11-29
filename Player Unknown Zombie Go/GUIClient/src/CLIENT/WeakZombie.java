@@ -1,6 +1,6 @@
 package CLIENT;
 
-public class WeakZombie extends Zombie
+public class WeakZombie
 {
     public static int weakZombieCount = 0;
 

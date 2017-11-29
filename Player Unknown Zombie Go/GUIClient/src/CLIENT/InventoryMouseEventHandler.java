@@ -69,6 +69,7 @@ public class InventoryMouseEventHandler extends Thread implements MouseListener,
         {
             InventoryMouseEventHandler.isItemClicked = true;
             InventoryMouseEventHandler.removeItem = jButton.getText();
+
             if (Player.CurrentHp == Player.MaxHp)
             {
                 inventory.closeInventory();
@@ -95,6 +96,7 @@ public class InventoryMouseEventHandler extends Thread implements MouseListener,
         {
             InventoryMouseEventHandler.isItemClicked = true;
             InventoryMouseEventHandler.removeItem = jButton.getText();
+
             if (Player.CurrentHp == Player.MaxHp)
             {
                 inventory.closeInventory();

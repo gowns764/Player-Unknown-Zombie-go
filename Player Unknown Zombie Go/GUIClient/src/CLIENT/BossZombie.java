@@ -2,7 +2,9 @@ package CLIENT;
 
 public class BossZombie
 {
-    public String name = "보스 좀비";
-    public int power = 50;
-    public int hp = 100;
+    public static String bossZombieName = "약한 좀비";
+    public static int bossZombiePower = 6;
+    public static int bossZombieMaxHp = 40;
+    public static int bossZombieCurrentHp = 40;
+    public static int bossZombieSpeed = 2;
 }

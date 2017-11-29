@@ -7,6 +7,7 @@ public class KeyboardEventHandler extends KeyAdapter
 {
     CollisionEventHandler collisionEventHandler = new CollisionEventHandler();
     static Battle battle = new Battle();
+    static LastBattle lastBattle = new LastBattle();
 
     public void keyPressed(KeyEvent event)
     {
@@ -35,9 +36,14 @@ public class KeyboardEventHandler extends KeyAdapter
 
                     if (value <= 1.5)
                     {
-                        Player.currentX = Player.playerLabel.getX();
-                        Player.currentY = Player.playerLabel.getY();
-                        battle.startBattle();
+                        if (WeakZombie.weakZombieCount == 9)
+                            lastBattle.startBattle();
+                        else
+                        {
+                            Player.currentX = Player.playerLabel.getX();
+                            Player.currentY = Player.playerLabel.getY();
+                            battle.startBattle();
+                        }
                     }
                     break;
                 }
@@ -61,9 +67,14 @@ public class KeyboardEventHandler extends KeyAdapter
 
                     if (value <= 1.5)
                     {
-                        Player.currentX = Player.playerLabel.getX();
-                        Player.currentY = Player.playerLabel.getY();
-                        battle.startBattle();
+                        if (WeakZombie.weakZombieCount == 9)
+                            lastBattle.startBattle();
+                        else
+                        {
+                            Player.currentX = Player.playerLabel.getX();
+                            Player.currentY = Player.playerLabel.getY();
+                            battle.startBattle();
+                        }
                     }
                     break;
                 }
@@ -86,9 +97,14 @@ public class KeyboardEventHandler extends KeyAdapter
 
                     if (value <= 1.5)
                     {
-                        Player.currentX = Player.playerLabel.getX();
-                        Player.currentY = Player.playerLabel.getY();
-                        battle.startBattle();
+                        if (WeakZombie.weakZombieCount == 9)
+                            lastBattle.startBattle();
+                        else
+                        {
+                            Player.currentX = Player.playerLabel.getX();
+                            Player.currentY = Player.playerLabel.getY();
+                            battle.startBattle();
+                        }
                     }
                     break;
                 }
@@ -110,9 +126,14 @@ public class KeyboardEventHandler extends KeyAdapter
 
                     if (value <= 1.5)
                     {
-                        Player.currentX = Player.playerLabel.getX();
-                        Player.currentY = Player.playerLabel.getY();
-                        battle.startBattle();
+                        if (WeakZombie.weakZombieCount == 9)
+                            lastBattle.startBattle();
+                        else
+                        {
+                            Player.currentX = Player.playerLabel.getX();
+                            Player.currentY = Player.playerLabel.getY();
+                            battle.startBattle();
+                        }
                     }
                     break;
                 }

@@ -23,8 +23,9 @@ public class Battle extends JFrame
 
     public static JLabel explainLabel = new JLabel("야생의 " + WeakZombie.weakZombieName + "가 나타났다! " + ChatGuiClient.name +"은(는) 무엇을 할 것인가?");
     public static JLabel toolLabel = new JLabel("");
-    JLabel battleGroundLabel = new JLabel(new ImageIcon("BattleGround.png"));
+    static JLabel battleGroundLabel = new JLabel(new ImageIcon("BattleGround.png"));
     JLabel weakZombieLabel = new JLabel(new ImageIcon("Zombie.png"));
+    JLabel hios = new JLabel(new ImageIcon("Hios.gif"));
 
     private Font font = new Font("굴림", Font.BOLD, 20);
 
@@ -51,6 +52,9 @@ public class Battle extends JFrame
     {
         battleGroundLabel.setBounds(0, 0, 1920, 1080);
         this.add(battleGroundLabel);
+
+        battleGroundLabel.add(hios);
+        hios.setBounds(650, 100, 488, 512);
 
         battleGroundLabel.add(attackButton);
         attackButton.setBounds(400, 650, 200, 100);
@@ -120,7 +124,12 @@ public class Battle extends JFrame
                 battleEnd();
         }
         else
-            zombieTurn();
+        {
+            if (InventoryMouseEventHandler.removeItem.equals("기관단총"))
+                Player.power++;
+            else
+                zombieTurn();
+        }
     }
 
     public void zombieTurn()
